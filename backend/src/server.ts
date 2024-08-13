@@ -1,7 +1,8 @@
 import express, { Request, Response } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import userRoutes from "./routes/search.route";
+import leagueRoute from "./routes/league.route";
+import teamRoute from "./routes/team.route";
 
 const app = express();
 app.use(express.json());
@@ -27,7 +28,8 @@ app.get("", (req: Request, res: Response) => {
   res.send("Hello");
 });
 
-app.use("/api/search", userRoutes);
+app.use("/api/league", leagueRoute);
+app.use("/api/team", teamRoute);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

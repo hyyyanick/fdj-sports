@@ -1,21 +1,23 @@
 import mongoose, { Schema } from "mongoose";
 import { League } from "../interfaces/league.interface";
+import Team from "./team.model";
 
-const LeagueSchema = new Schema<League>(
-  {
-    name: {
-      type: String,
-      required: true,
-    },
-
-    sport: {
-      type: String,
-      required: true,
-    },
+const LeagueSchema = new Schema<League>({
+  name: {
+    type: String,
+    required: true,
   },
-  {
-    timestamps: true,
-  }
-);
+  sport: {
+    type: String,
+    required: true,
+  },
+  teams: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: Team,
+    },
+  ],
+});
 
-export const LeagueModel = mongoose.model("League", LeagueSchema);
+const League = mongoose.model("League", LeagueSchema);
+export default League;

@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import { Player } from "../interfaces/player.interface";
 
-const LeagueSchema = new Schema<Player>({
+const PlayerSchema = new Schema<Player>({
   name: {
     type: String,
     required: true,
@@ -16,6 +16,6 @@ const LeagueSchema = new Schema<Player>({
   born: Date,
 });
 
-const League = mongoose.model("League", LeagueSchema);
+const Player = mongoose.model("Player", PlayerSchema);
 
-module.exports = League;
+export default Player;

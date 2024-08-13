@@ -6,7 +6,7 @@ import {
   IonItem,
   IonLabel,
 } from '@ionic/angular/standalone';
-import { SearchService } from '@services/search/search.service';
+import { LeagueService } from '@services/league/league.service';
 import { TeamService } from '@services/team/team.service';
 import { League } from '@interfaces/leangue.interface';
 
@@ -20,25 +20,26 @@ import { League } from '@interfaces/leangue.interface';
 export class SearchBarComponent {
   options: League[] = [];
   searchQuery: string = '';
-  private searchService = inject(SearchService);
+  private leagueService = inject(LeagueService);
   private teamService = inject(TeamService);
 
   constructor() {}
 
   searchByLeague(event: any): void {
-    this.searchService
-      .search(this.searchQuery)
+    this.leagueService
+      .getLeague(this.searchQuery)
       .subscribe((data: any) => (this.options = [data]));
   }
 
-  getTeams(leagueId: string): void {
-    this.searchService.search(leagueId).subscribe((data: any) => {
-      console.log(data);
+  getTeams(leagueName: string): void {
+    this.leagueService.getLeagueWithTeams(leagueName).subscribe((data: any) => {
+      this.teamService.setTeams(data.teams);
     });
   }
 
   selectOption(option: League): void {
     this.searchQuery = option.name;
     this.options = [];
+    this.getTeams(option.name);
   }
 }

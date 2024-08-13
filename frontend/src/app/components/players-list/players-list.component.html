@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ teamName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    @for(player of players; track player.id) {
+    <ion-item lines="none" color="light" class="ion-padding-bottom">
+      <ion-thumbnail slot="start">
+        <img [alt]="player.name" [src]="player.thumbnail" />
+      </ion-thumbnail>
+      <ion-label>
+        <strong>{{ player.name }}</strong>
+        <p>{{ player.position }}</p>
+        <p>birthDate: {{ player.born | date : "yyyy-MM-dd" }}</p>
+        <p>price: {{ player.signin.amount }} {{ player.signin.currency }}</p>
+      </ion-label>
+    </ion-item>
+    }
+  </ion-list>
+</ion-content>

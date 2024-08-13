@@ -1,0 +1,15 @@
+<ion-grid>
+  <ion-row>
+    @for(team of teams$ | async; track team.name) {
+    <ion-col
+      (click)="goToTeamDetail(team._id)"
+      router-direction="forward"
+      routerLinkActive="router-link-active"
+      size="6"
+      class="ion-padding"
+    >
+      <ion-img [src]="team.thumbnail" [alt]="team.name"></ion-img>
+    </ion-col>
+    }
+  </ion-row>
+</ion-grid>
