@@ -1,0 +1,15 @@
+<ion-searchbar
+  placeholder="Search by league"
+  show-cancel-button="focus"
+  [(ngModel)]="searchQuery"
+  [debounce]="800"
+  (ionInput)="searchByLeague($event)"
+></ion-searchbar>
+
+<ion-list>
+  @for(op of options; track op.name) {
+  <ion-item button detail="false" (click)="selectOption(op)">
+    <ion-label>{{ op.name }}</ion-label>
+  </ion-item>
+  }
+</ion-list>
