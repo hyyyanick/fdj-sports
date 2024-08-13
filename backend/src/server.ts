@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import leagueRoute from "./routes/league.route";
 import teamRoute from "./routes/team.route";
+import config from "./config/config";
 
 const app = express();
 app.use(express.json());
@@ -13,10 +14,10 @@ app.use(
   })
 );
 
-const PORT = 5000 || process.env.PORT;
+const PORT = config.port;
 const connect = async () => {
   try {
-    await mongoose.connect("mongodb://localhost:27017/fdj-sports");
+    await mongoose.connect(config.db_uri);
     console.log("Connected to MongoDB");
   } catch (error) {
     console.log(error);

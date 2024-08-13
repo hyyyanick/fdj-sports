@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  mongo_db:
+    container_name: db_container
+    image: mongo:7.0.7
+    restart: always
+    volumes:
+      - mongo_db:/data/db
+  backend:
+    build: .
+    ports:
+      - 5000:3000
+    environment:
+      APP_NAME: FDJSportsBackend
+      PORT: 3000
+      DB_URI: mongodb://mongo_db:27017/fdj-sports
+    depends_on:
+      - mongo_db
+
+volumes:
+  mongo_db: {}
