@@ -19,7 +19,9 @@ router.get("/", async (req: Request, res: Response) => {
 
 router.get("/leagueName/:leagueName", async (req: Request, res: Response) => {
   try {
-    const league = await getLeagueWithTeams(req.params.leagueName);
+    const limit = parseInt(req.query.limit as string);
+    const page = parseInt(req.query.page as string);
+    const league = await getLeagueWithTeams(req.params.leagueName, limit, page);
     return res.status(200).json(league);
   } catch (error) {
     res.status(500).json({ error });

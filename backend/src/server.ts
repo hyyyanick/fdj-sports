@@ -17,6 +17,11 @@ app.use(
 const PORT = config.port;
 const connect = async () => {
   try {
+    // await mongoose.createConnection(config.db_uri, {
+    //   authSource: "admin",
+    //   user: config.db_options.user,
+    //   pass: config.db_options.pass,
+    // });
     await mongoose.connect(config.db_uri);
     console.log("Connected to MongoDB");
   } catch (error) {

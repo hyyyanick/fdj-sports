@@ -22,4 +22,20 @@
     </ion-item>
     }
   </ion-list>
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+    ></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  @if(players && players.length == 0) {
+  <p class="ion-text-center">Aucun joueur trouvé dans cette équipe.</p>
+  }
 </ion-content>
+
+<ion-toast
+  [isOpen]="isErrorToastOpen"
+  message="Server Error"
+  color="danger"
+  [duration]="3000"
+  (didDismiss)="setOpen(false)"
+></ion-toast>

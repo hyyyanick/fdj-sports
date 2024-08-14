@@ -4,6 +4,8 @@
   [(ngModel)]="searchQuery"
   [debounce]="800"
   (ionInput)="searchByLeague($event)"
+  (ionCancel)="clearContent($event)"
+  (ionClear)="clearContent($event)"
 ></ion-searchbar>
 
 <ion-list>
@@ -13,3 +15,18 @@
   </ion-item>
   }
 </ion-list>
+<ion-toast
+  [isOpen]="isToastOpen"
+  message="Veuillez chercher une autre league."
+  color="warning"
+  [duration]="3000"
+  (didDismiss)="setOpen(false)"
+></ion-toast>
+
+<ion-toast
+  [isOpen]="isErrorToastOpen"
+  message="Server Error"
+  color="danger"
+  [duration]="3000"
+  (didDismiss)="setOpen(false)"
+></ion-toast>

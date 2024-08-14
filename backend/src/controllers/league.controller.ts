@@ -8,11 +8,16 @@ export const getLeague = async (query: string) => {
   }
 };
 
-export const getLeagueWithTeams = async (leagueName: string) => {
+export const getLeagueWithTeams = async (
+  leagueName: string,
+  limit: number,
+  page: number
+) => {
   try {
-    const leagues = await League.findOne({ name: leagueName }).populate(
-      "teams"
-    );
+    const leagues = await League.findOne({ name: leagueName }).populate({
+      path: "teams",
+      options: { limit, skip: (page - 1) * limit },
+    });
     return leagues;
   } catch (error) {
     throw error;
