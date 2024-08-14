@@ -3,7 +3,7 @@ import { getTeamWithPlayers } from "../controllers/team.controller";
 
 const router = Router();
 
-// Get league by search keyword
+// Get player list
 router.get("/teamId/:id", async (req: Request, res: Response) => {
   try {
     const teamId = req.params.id;
